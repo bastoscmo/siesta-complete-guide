@@ -1,0 +1,218 @@
+#### SYSTEM 
+SystemLabel  Si-diamond
+SystemName   Si bulk diamond
+
+###### ATOMS
+# %block ChemicalSpeciesLabel %endblock ChemicalSpeciesLabel
+# %block SyntheticAtoms       %endblock SyntheticAtoms
+# %block AtomicMass           %endblock AtomicMass
+
+NumberOfSpecies 1
+NumberOfAtoms 2
+
+%block ChemicalSpeciesLabel
+  1   14  Si
+%endblock ChemicalSpeciesLabel
+
+
+###### Basis Sets
+# PAO.BasisType split
+# PAO.BasisSize DZP
+# PAO.EnergyShift 0.01 Ry
+# PAO.SplitNorm 0.15
+# PAO.SplitNormH 
+# PAO.SplitTailNorm true
+# PAO.SplitValence.Legacy false
+# PAO.FixSplitTable false
+# PAO.EnergyCutoff 20 Ry
+# PAO.EnergyPolCutoff 20 Ry
+# PAO.ContractionCutoff 0
+# PAO.Polarization.NonPerturbative false
+# %block PAO.Polarization.Scheme %endblock PAO.Polarization.Scheme
+# PAO.Polarization.Rc-Expansion-Factor 1.0
+# PAO.SoftDefault true
+# PAO.SoftInnerRadius 0.9
+# PAO.SoftPotential 40 Ry
+
+### Structure
+# %block LatticeParameters  %endblock LatticeParameters
+# %block Supercell          %endblock Supercell 
+# AtomCoorFormatOut Fractional
+# AtomicCoordinatesOrigin 0.0 0.0 0.0
+# %block Zmatrix            %endblock Zmatrix
+# ZM.UnitsLength Bohr
+# ZM.UnitsAngle  rad
+
+LatticeConstant 7 Ang
+
+AtomicCoordinatesFormat Fractional
+
+%block LatticeVectors
+     0.0    0.5    0.5
+     0.5    0.0    0.5
+     0.5    0.5    0.0
+%endblock LatticeVectors
+
+%block AtomicCoordinatesAndAtomicSpecies
+   0.25   0.25   0.25 1
+   0.0   0.0   0.0 1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+###### K-Point Sampling
+# kgrid.MonkhorstPack (Gamma-point default)
+# %block kgrid.MonkhostPack     %endblock MonkhostPack
+# kgrid.Cutoff
+# kgrid.File
+# ChangeKgridInMD true
+# TimeReversalSymmetryForKpoint true
+
+kgrid.MonkhorstPack [2  2  2]
+
+###### Exchange-Correlation Functional
+# %block XC.mix    %endblock XC.mix
+#
+XC.Functional GGA
+XC.Authors PBE
+
+###### Spin Polarization
+# Spin.Fix false
+# Spin.Total 0
+# %block Spin.Spiral  %endblock Spin.Spiral
+# Spin.Spiral.Scale 
+# SingleExcitation False
+# Spin.OrbitStrength 1.0
+#
+Spin non-polarized
+
+
+###### Self-consistent-field
+# SCF.MustConverge true 
+# SCF.Mix Hamiltonian
+# SCF.Mix.Spin all
+# SCF.Mixer.Method Pulay
+# SCF.Mixer.Variant original
+# SCF.Mixer.Weight 0.25
+# SCF.Mixer.Kick 0
+# SCF.Mixer.Kick.Weight
+# SCF.Mixer.Restart 0
+# SCF.Mixer.Restart.Save 1
+# SCF.Mixer.Linear.After -1
+# SCF.Mixer.Linear.After.Weight
+# SCF.Mixer.History 10
+# 
+
+
+
+MinSCFInterations 5
+MaxSCFIterations  300
+
+###### Real-Space and Planewaves
+# %block Mesh.Sizes    %endblock Mesh.Sizes
+# Mesh.subdivisions 2
+# %block Grid.CellSampling  %endblock Grid.CellSampling
+# %block EggboxRemove       %endblock EggboxRemove
+# EggboxScale 1 eV
+
+Mesh.Cutoff 300 Ry
+
+
+###### Grimme's DFT-D3
+# DFTD3 false
+# DFTD3.UseXCDefaults true
+# DFTD3.BJdamping true
+# DFTD3.s6 1.0
+# DFTD3.rs6 1.0
+# DFTD3.s8 1.0
+# DFTD3.rs8 1.0
+# DFTD3.alpha 14.0
+# DFTD3.a1 0.4
+# DFTD3.a2 5.0
+# DFTD3.2bodyCutOff 60.0 bohr
+# DFTD3.BodyCutoff 40.0 bohr
+# DFTD3.CoordinationCutoff 10.0 bohr
+
+
+
+###### Relaxation Structure
+# MD.Steps 50
+# Constant.Volume false
+# MD.MaxStressTol 1 GPa
+# MD.MaxDispl 0.2 Bohr
+# MD.PreconditionVariableCell 5 Ang
+# MD.Broyden.History.Steps 5
+# MD.Broyden.Cycle.On.Mait true
+# Target.Pressure 0 GPa
+# MD.RemoveIntramolecularPressure false
+
+MD.TypeOfRun CG
+MD.VariableCell true
+#MD.RelaxCellOnly true
+MD.MaxForceTol 0.001 eV/Ang
+MD.Steps 30
+
+
+###### Electronic Structure
+# SolutionMethod diagon
+# NumberOfEigenStates 
+# Diag.Use2D true
+# Diag.ProcessorY (can be ~sqrt(N processors))
+# Diag.BlockSize 
+# Diag.Algorithm Divide-and-Conquer
+# Diag.ParallelOverK false
+# Diag.Memory 1
+# Diag.UpperLower lower
+# OccupationFunction FD
+# OccupationMPOrder 1
+# ElectronicTemperature 300 K
+
+
+###### PEXSI Solver
+# PEXSI.NumPoles 40
+# PEXSI.deltaE 3 Ry
+# PEXSI.Gap 0 Ry
+# PEXSI.num-electron-tolerance 0.0001
+# PEXSI.mu-max-inter 10
+# PEXSI.mu -0.6 Ry
+# PEXSI.Inertia-Counts 3
+# PEXSI.mu-min -1 Ry
+# PEXSI.mu-max 0 Ry
+
+
+###### DOS evaluate with PEXSI
+# PEXSI.DOS false
+# PEXSI.DOS.Emin -1 Ry
+# PEXSI.DOS.Emax 1 Ry
+# PEXSI.DOS.Ef.Reference true
+# PEXSI.DOS.NPoints 200
+# PEXSI.LDOS.Broadening 0.01 Ry
+
+
+
+
+###### Band Structure
+# BandLineScale pi/a
+# %Block BandLines    %endblock BandLines
+# %block BandPoints   %endblock BandPoints
+#
+
+
+
+###### Output of Wave Function of Bands
+# WriteKBands false
+# WriteBands false
+# WFS.Write.For.Bands false
+# WFS.Band.Min 1
+# WFS.Band.Max 30
+# WaveFuncKPointsScale pi/a
+# %block WaveFuncKPoints   %endblock WaveFuncKPoints
+#
+
+#### OUTPUT FILES
+# LongOutPut false
+# WriteKpoints false
+# WriteOrbMom false
+# SCF.Write.Extra false
+# WriteEigenvalues false
+# On.UseSaveLWF false
+#
+#

@@ -1,0 +1,86 @@
+# (1) GENERAL SYSTEM DESCRIPTORS #
+
+SystemName   graphene
+SystemLabel  graphene
+
+%block ChemicalSpecieslabel
+    1   6   C
+%endblock ChemicalSpecieslabel
+
+# (2) BASIS SET DEFINITION #
+
+# Default options.
+
+# (3) LATTICE INFORMATIONS AND K-GRID #
+
+LatticeConstant          2.49 Ang
+AtomicCoordinatesFormat  Fractional
+
+%block LatticeVectors
+      1.000      0.000     0.000
+     -0.500      0.866     0.000
+      0.000      0.000    10.00
+%endblock LatticeVectors
+
+%block AtomicCoordinatesAndAtomicSpecies
+   0.000 0.000 0.500   1
+   0.333 0.666 0.500   1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+kgrid_Monkhorst_Pack [5 5 1]
+
+
+BandLinesScale  ReciprocalLatticeVectors
+
+%block BandLines
+    1    0.0000000    0.0000000    0.0000000000    \Gamma
+    50    0.3333333    0.3333333    0.0000000000    K
+    50    0.0000000    0.5000000    0.0000000000    M
+    50    0.0000000    0.0000000    0.0000000000    \Gamma
+%endblock BandLines
+
+%block PDOS.kgrid.MonkhorstPack
+    30    0    0    0.0
+     0   30    0    0.0
+     0    0   1    0.0
+%endblock PDOS.kgrid.MonkhorstPack
+
+%block ProjectedDensityOfStates
+-10.0 10.0 0.05 5000 eV
+%endblock ProjectedDensityOfStates
+
+# (4) FUNCTIONAL AND CONVERGENCE OPTIONS #
+
+XC.Functional GGA
+XC.Authors    PBE
+
+MaxSCFIterations       500
+Mesh.Cutoff            500.0  Ry
+SCF.Mixer.Weight       1.0d-2
+SCF.DM.Tolerance       1.0d-4 eV
+SCF.FreeE.Converge     .true.
+SCF.FreeE.Tolerance    1.0d-5 eV
+ElectronicTemperature  25.0 meV
+
+# (5) STRUCTURAL RELAXATION (MD.TypeOfRun CG - default) #
+
+DM.UseSaveDM     .true.
+MD.UseSaveZM     .true.
+MD.UseSaveCG     .true.
+ON.UseSaveLWF    .true.
+MD.VariableCell  .true.
+ConstantVolume   .true.
+MD.Steps         0
+MD.MaxDispl      1.0d-2 Ang
+MD.MaxForceTol   1.0d-3 eV/Ang
+MD.MaxStressTol  1.0d-4 GPa
+Target.Pressure  1.0d-4 GPa
+
+# (6) OUTPUT OPTIONS #
+
+WriteCoorInitial  .true.
+WriteMDHistory    .true.
+WriteCoorStep     .true.
+WriteForces       .true.
+WriteCoorXmol     .true.
+WriteMDXmol       .true.

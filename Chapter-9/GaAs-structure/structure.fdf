@@ -1,0 +1,24 @@
+# automatic create translation from SIESTA STRUCT_OUT file using sstranslate
+ 
+NumberOfSpecies    2
+NumberofAtoms      2
+ 
+%block ChemicalSpeciesLabel 
+   1   33   As
+   2   31   Ga
+%endblock ChemicalSpeciesLabel
+ 
+LatticeConstant 1.0  Ang
+ 
+AtomicCoordinatesFormat Fractional
+ 
+%block LatticeVectors
+   -0.000027290   2.752462740   2.752462739
+   2.752462740   -0.000027290   2.752462739
+   2.752462740   2.752462740   -0.000027290
+%endblock LatticeVectors
+ 
+%block AtomicCoordinatesAndAtomicSpecies
+   0.249998906   0.249998906   0.249998906   1
+   0.000000659   0.000000659   0.000000659   2
+%endblock AtomicCoordinatesAndAtomicSpecies
